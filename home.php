@@ -22,8 +22,7 @@
       $stmt = $pdo->prepare('SELECT * FROM movies');
       $stmt->execute();
       //transformamos o retorno em um array associativo
-      $stmt = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
   </head>
@@ -47,20 +46,21 @@
                   <th>Ano</th>
                   <th>Duração</th>
                   <th>Sinopse</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <!--
                   Pegamos o array associativo com os filmes e fazemos um foreach, preenchendo a tabela para exibição.
                 -->
-                <?php foreach ($stmt as $filme): ?>
+                <?php foreach ($data as $filme): ?>
                   <tr>
                     <td><?= $filme['id'] ?></td>
-                    <td><?= $filme['nome'] ?></td>
-                    <td><?= $filme['genero'] ?></td>
-                    <td><?= $filme['ano'] ?></td>
-                    <td><?= $filme['duracao'] ?></td>
-                    <td><?= $filme['sinopse'] ?></td>
+                    <td><?= $filme['name'] ?></td>
+                    <td><?= $filme['genre'] ?></td>
+                    <td><?= $filme['year'] ?></td>
+                    <td><?= $filme['duration'] ?></td>
+                    <td><?= $filme['synopsis'] ?></td>
                     <td class="text-center">
                       <!--
                         Aqui a gente cria um botão de editar o filme, passando o id dele via get pela url pro arquivo de edição.
